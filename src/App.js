@@ -1,36 +1,30 @@
-import { useEffect, useState } from 'react';
 import './App.css';
 import Nav from './components/Nav';
-import { fetchAllProducts } from './api/fetchdata';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Cart } from './views/Cart';
+import { Categories } from './views/Categories';
+import { Register } from './views/Register';
+import { SignIn } from './views/SignIn';
+import { Home } from './views/Home';
 
 function App() {
 
-  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetchAllProducts().then(setData)
-  },[]);
-  console.log(data);
+  // console.log(data[7].thumbnail);
   return (
     <>
-      <Nav />
-      <div>
-        {data.length === 0 ?
-         <p>loading</p> :
-         (
-          <ul>
-          {data.map((datan) => (
-            <li>
-              <h1>{datan.title}</h1>
-              <p>{datan.description}</p>
-              <p>{datan.color}</p>
-              <p>{datan.price}</p>
-              {/* <p>{datan.reviews.inputReview}</p> */}
-            </li>          
-          ))}
-          </ul>
-        )}
-      </div>
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="register" element={<Register />} />
+          <Route path="signin" element={<SignIn />} />
+
+        </Routes>
+
+      </BrowserRouter>
     </>
   );
 }
