@@ -14,18 +14,20 @@ export function SignIn() {
     function navigateHome(){
         navigate("/");
     }
-    const login = () => {
+    const login = (e) => {
+        e.preventDefault();
         fetch("http://localhost:5000/login", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password }),
         }).then((res) => res.json()).then((res) => {
+            console.log(res);
             localStorage.setItem("token", res.accessToken);
 
             if (res == null){ 
                 console.log("login failed") 
             }
-            navigateHome();
+            //navigateHome();
         })
 
     }

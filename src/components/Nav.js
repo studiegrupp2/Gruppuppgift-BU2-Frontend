@@ -8,10 +8,10 @@ export default function Nav() {
     const [cart, setCart] = useState([]);
     const [cartAmount, setCartAmount] = useState();
 
-    // useEffect(() => {
-    //     getCartItems().then(setCart)
-    // }, []);
-    // console.log(cart);
+    useEffect(() => {
+        getCartItems().then(setCart)
+    }, []);
+    console.log(cart);
 
     return (
         <nav>
@@ -22,6 +22,11 @@ export default function Nav() {
                 <li><Link to="register">Register</Link></li>
                 <li><Link to="/signin">Sign In</Link></li>
             </ul>
+            {/* {cart.map((item) => (
+                <div>
+                 <p>{item.title}</p>
+                </div> 
+            ))} */}
             <div id="cards-container">
 
             </div>
