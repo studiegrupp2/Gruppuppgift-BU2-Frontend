@@ -7,12 +7,10 @@ export function SignIn() {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
-    // function HomeButton() {
-    //     const navigate = useNavigate();
-    // }
     
-    function navigateHome(){
-        navigate("/");
+    const navigateHome = () => {
+       let path = "/";
+       navigate(path);
     }
     const login = (e) => {
         e.preventDefault();
@@ -24,15 +22,13 @@ export function SignIn() {
             console.log(res);
             localStorage.setItem("token", res.accessToken);
 
-            if (res == null){ 
+            if (res.status !== 200){ 
                 console.log("login failed") 
             }
-            //navigateHome();
+            navigateHome();
         })
 
     }
-
-
 
     return (
         <>

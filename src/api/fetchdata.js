@@ -5,6 +5,7 @@ export const fetchAllProducts = async () => {
 
 export const getCartItems = async () => {
     const options = {
+
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
@@ -19,6 +20,7 @@ export const AddToCart = async (productId) => {
     
     const response = await fetch(`http://localhost:5000/store/product/${productId}/cart`,
     {
+
         "method" : 'POST',
         "headers": {
             "Content-Type": "application/json",

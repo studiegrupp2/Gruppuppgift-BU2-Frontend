@@ -22,11 +22,14 @@ export default function Nav() {
                 <li><Link to="register">Register</Link></li>
                 <li><Link to="/signin">Sign In</Link></li>
             </ul>
+            <div>
             {/* {cart.map((item) => (
-                <div>
+               
                  <p>{item.title}</p>
-                </div> 
+             
             ))} */}
+            </div>
+            
             <div id="cards-container">
 
             </div>

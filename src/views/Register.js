@@ -17,10 +17,12 @@ export function Register() {
         <>
             <h1>Register</h1>
             <form>
-                <label >Email</label>
-                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                <label >Password</label>
-                <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <label htmlFor="email">Email
+                <input type="email" id="email"placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                </label>
+                <label htmlFor="password">Password
+                <input type="password" id="password"placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                </label>
                 <button type="submit" onClick={register}>Register</button>
             </form>
         </>
