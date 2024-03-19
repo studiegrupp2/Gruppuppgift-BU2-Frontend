@@ -7,10 +7,6 @@ import ProductCards from '../components/ProductCards';
 export function Home({data}) {
 
 
-    // const addItemToCart = (product) => {
-    //     setCart([...cart, { product: product, amount: 1 }]);
-    //   };
-    
     console.log(data);
     return (
         <div>

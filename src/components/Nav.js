@@ -8,13 +8,13 @@ export default function Nav() {
     const [cart, setCart] = useState([]);
     const [cartAmount, setCartAmount] = useState();
 
-    useEffect(() => {
-        getCartItems().then(setCart)
-    }, []);
-    console.log(cart);
+    // useEffect(() => {
+    //     getCartItems().then(setCart)
+    // }, []);
+    // console.log(cart);
 
     return (
-        <nav>
+        <nav >
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/cart">Cart</Link></li>

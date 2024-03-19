@@ -14,23 +14,53 @@ export const getCartItems = async () => {
     };
     let result = await fetch("http://localhost:5000/store/cart", options);
     return await result.json();
+
+
 }
 
 export const AddToCart = async (productId) => {
-    
-    const response = await fetch(`http://localhost:5000/store/product/${productId}/cart`,
-    {
 
-        "method" : 'POST',
-        "headers": {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-    }
-    });
+    const response = await fetch(`http://localhost:5000/store/product/${productId}/cart`,
+        {
+
+            "method": 'POST',
+            "headers": {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            }
+        });
     const result = await response.json();
     return result;
 }
 
+export const DeleteProductInCart = async (productId) => {
+
+    const response = await fetch(`http://localhost:5000/store/product/${productId}/cart`,
+        {
+
+            "method": 'DELETE',
+            "headers": {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            }
+        });
+    const result = await response.json();
+    return result;
+}
+
+// export const PostReview = async (productId) => {
+//     const response = await fetch(`http://localhost:5000/store/product/${productId}`,
+//         {
+//             "method": "POST",
+//             "headers": {
+//                 "Content-Type": "application/json",
+//                 Authorization: "Bearer " + localStorage.getItem("token"),
+//             },
+//             body: JSON.stringify({})
+//         });
+//     const result = await response.json();
+//     return result;
+// }
 // export const register = (email, password) => {
 //     fetch("http://localhost:5000/register", {
 //         method: 'POST',

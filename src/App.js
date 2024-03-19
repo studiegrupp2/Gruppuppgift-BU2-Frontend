@@ -14,24 +14,24 @@ import { fetchAllProducts } from './api/fetchdata';
 
 function App() {
   const [data, setData] = useState([]);
+  const [product, setProduct] = useState();
     
     useEffect(() => {
         fetchAllProducts().then(setData)
     }, []);
 
-  // console.log(data[7].thumbnail);
   return (
     
     <>
       <BrowserRouter>
         <Nav />
         <Routes>
-          <Route index element={<Home  data={data}/>} />
-          <Route path="cart" element={<Cart />} />
+          <Route index element={<Home  data={data} setProduct={setProduct}/>} />
+          <Route path="cart" element={<Cart data={data}/>} />
           <Route path="categories" element={<Categories />} />
           <Route path="register" element={<Register />} />
           <Route path="signin" element={<SignIn />} />
-          <Route path="item/:id" element={<ProductItemView data={data}/>}/>
+          <Route path="item/:id" element={<ProductItemView data={data} product={product}/>}/>
         </Routes>
 
       </BrowserRouter>
