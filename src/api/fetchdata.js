@@ -48,19 +48,79 @@ export const DeleteProductInCart = async (productId) => {
     return result;
 }
 
-// export const PostReview = async (productId) => {
-//     const response = await fetch(`http://localhost:5000/store/product/${productId}`,
-//         {
-//             "method": "POST",
-//             "headers": {
-//                 "Content-Type": "application/json",
-//                 Authorization: "Bearer " + localStorage.getItem("token"),
-//             },
-//             body: JSON.stringify({})
-//         });
-//     const result = await response.json();
-//     return result;
-// }
+export const BuyItemsInCart = async () => {
+
+    const response = await fetch("http://localhost:5000/store/product/cart/buy",
+        {
+            "method": 'PUT',
+            "headers": {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            }
+        });
+    if (response.status !== 200) {
+        console.log("cart empty");
+        // return null;
+    }
+    const result = await response.json();
+    return result;
+}
+
+
+export const updateProduct = async () => {
+    const options = {
+
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+        }
+    };
+    if (options.status !== 200) {
+        console.log("cart empty");
+        // return null;
+    }
+    let result = await fetch("http://localhost:5000/store/product/cart/buy", options);
+    return await options.json();
+
+
+}
+export const PostReview = async (productId, inputReview) => {
+
+        const response = await fetch(`http://localhost:5000/store/product/${productId}`,
+            {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+                body: JSON.stringify({ inputReview }),
+            });
+        const result = await response.json();
+        return result;
+  
+}
+
+export const PostRating = async (productId, userRating) => {
+
+        const response = await fetch(`http://localhost:5000/store/product/${productId}/rating?userRating=${userRating}`,
+            {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                }
+            });
+        const result = await response.json();
+        return result;
+
+   
+}
+
+
+
+
+
 // export const register = (email, password) => {
 //     fetch("http://localhost:5000/register", {
 //         method: 'POST',

@@ -33,7 +33,7 @@ export const createNewProduct = (title, description, category, size, color, pric
 
 
 export const deleteProduct = (productId) => {
-    fetch("http://localhost:5000/manager/delete"+ productId,
+    fetch("http://localhost:5000/manager/delete/"+ productId,
     {
         method: "DELETE",
         headers: {
@@ -46,6 +46,7 @@ export const deleteProduct = (productId) => {
             alert("Product not found")
         }
         else{
+            alert("product with id " + productId + "deleted!")
             return res.json()
             .then(console.log(res))
         }
@@ -56,31 +57,25 @@ export const deleteProduct = (productId) => {
     });
 }
 
-export const updateProduct = (productId, title, description, category, size, color, price, thumbnail) => {
-    fetch("http://localhost:5000/manager/delete"+ productId,
+export const updateProduct = (updateProductDetails, idInput) => {
+    fetch("http://localhost:5000/manager/update/"+ idInput,
     {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
         },
-        body: JSON.stringify({
-            title: title,
-            description: description,
-            category: category,
-            size: size,
-            color: color,
-            price: price,
-            thumbnail: thumbnail
-        }),
+        body: JSON.stringify(updateProductDetails),
     })
     .then((res) => {
         if(res.status === 400) {
             alert("You must enter all fields")
         }
         else{
+            alert("Product Updated!")
             return res.json()
             .then(console.log(res))
+            
         }
     })
     .catch((err) => {
@@ -89,24 +84,46 @@ export const updateProduct = (productId, title, description, category, size, col
     });
 }
 
-export const getAllOrders = () => {
-    fetch("http://localhost:5000/manager/orders", {
-        headers: {
+export const getAllOrders = async () => {
+
+    const response = await fetch("http://localhost:5000/manager/orders" ,
+    {
+        "method": "GET",
+        "headers":{
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token")
         }
-    })
-    .then((res) => {
-        if(res.status === 404) {
-            alert("Orders not found")
-        }
-        else {
-            return res.json()
-            .then(console.log(res))
-        }
-    })
-    .catch((err) => {
-        console.log(Object.keys(err));
-        console.log(err);
     });
+    if(response.status !== 200){
+        console.log("No Orders Found..")
+    }
+    const result = await response.json();
+    return result;
+    // const options = {
+    //     method: "GET",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: "Bearer " + localStorage.getItem("token"),
+    //     }
+    // };
+
+    // let result = await fetch("http://localhost:5000/manager/orders", options);
+    // return await result.json();
+     
+    
+
+
+    // .then((res) => {
+    //     if(res.status === 404) {
+    //         alert("Orders not found")
+    //     }
+    //     else {
+    //         return res.json()
+    //         .then(console.log(res))
+    //     }
+    // })
+    // .catch((err) => {
+    //     console.log(Object.keys(err));
+    //     console.log(err);
+    // });
 }

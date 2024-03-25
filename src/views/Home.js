@@ -4,20 +4,19 @@ import { AddToCart } from '../api/fetchdata';
 import ProductCards from '../components/ProductCards';
 
 
-export function Home({data}) {
+export function Home({data, loggedIn, setLoggedIn,}) {
+    
 
-
-    console.log(data);
+    // console.log(data);
     return (
         <div>
             {data.length === 0 ?
                 <p>loading</p> : (
                 <ul>
                     {data.map((product) => (
-                        <ProductCards key={product.id} product={product} />
+                        <ProductCards key={product.id} product={product} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
                     ))}
                 </ul>)}
-
         </div>
     )
 }
